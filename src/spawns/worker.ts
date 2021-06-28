@@ -12,9 +12,6 @@ export const workerSpawnLogic = (room: Room) => {
   const workers = room.find(FIND_CREEPS, { filter: { memory: { role: 'worker' } } })
   if (workers.length >= WORKERS_REQUIRED) return
 
-  const worker = workers[0]
-  worker.room.visual
-
   const workerNames = workers.map(worker => worker.name)
   const newWorkerName = getAvailableWorkerName(workerNames)
   const memoryOptions = { memory: { role: 'worker', room: room.name, working: false } }
