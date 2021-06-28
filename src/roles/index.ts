@@ -1,6 +1,6 @@
-import { workerLogic } from "./worker"
-
 export * from './worker'
+
+import { workerLogic } from "."
 
 export const logic = () => {
   for (const roomName in Game.rooms) {
