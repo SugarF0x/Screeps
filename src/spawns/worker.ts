@@ -12,8 +12,7 @@ export const workerSpawnLogic = () => {
     if (spawn.spawning) { displaySpawningText(spawn); continue }
     if (spawn.spawnCreep(WORKER_BASE, 'dry', { dryRun: true }) !== OK) continue
 
-    const creeps = room.find(FIND_CREEPS)
-    const workers = creeps.filter(creep => creep.memory?.role === 'worker')
+    const workers = room.find(FIND_CREEPS, { filter: { memory: { role: 'worker' } } })
     if (workers.length >= WORKERS_REQUIRED) continue
 
     const worker = workers[0]
