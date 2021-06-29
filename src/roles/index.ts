@@ -1,6 +1,7 @@
 export * from './worker'
+export * from './upgrader'
 
-import { workerLogic } from "."
+import { workerLogic, upgraderLogic } from "."
 
 export const logic = () => {
   for (const roomName in Game.rooms) {
@@ -9,6 +10,7 @@ export const logic = () => {
     room.find(FIND_MY_CREEPS).forEach(creep => {
       switch(creep.memory.role) {
         case 'worker': return workerLogic(creep)
+        case 'upgrader': return upgraderLogic(creep)
       }
     })
   }
