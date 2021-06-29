@@ -12,7 +12,7 @@ export const upgraderSpawnLogic = (room: Room) => {
   const creeps = room.find(FIND_CREEPS, { filter: { memory: { role: 'upgrader' } } })
   if (creeps.length >= CREEPS_REQUIRED) return
 
-  const newCreepName = getAvailableName(creeps, 'Worker')
+  const newCreepName = getAvailableName(creeps, 'Upgrader')
   const memoryOptions = { memory: { role: 'upgrader', room: room.name, working: false } }
   spawn.spawnCreep(CREEP_BASE, newCreepName, memoryOptions)
   displaySpawningText(spawn)
