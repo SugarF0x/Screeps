@@ -15,7 +15,9 @@ export const placeRoadBlueprints = (room: Room) => {
 function proxy (room: Room): boolean {
   const spawn = findSpawn(room)
   const proxy = findProxy(room)
-  const path = room.findPath(spawn.pos, proxy.pos)
+  const path = room.findPath(spawn.pos, proxy.pos, { ignoreCreeps: true })
+  // pop last value so as not to construct road over it
+  path.pop()
 
   if (spawn.memory.constructions.proxy) return false
 
