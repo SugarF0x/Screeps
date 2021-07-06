@@ -1,14 +1,22 @@
+export * from './_template'
 export * from './worker'
 export * from './upgrader'
-export * from './_template'
+export * from './builder'
 
-import { workerSpawnLogic, upgraderSpawnLogic } from '.'
+import { workerSpawnLogic, upgraderSpawnLogic, builderSpawnLogic } from '.'
+
+const spawnPriority = [
+  workerSpawnLogic,
+  upgraderSpawnLogic,
+  builderSpawnLogic
+]
 
 export const spawn = () => {
   for (const roomName in Game.rooms) {
     const room = Game.rooms[roomName]
 
-    if (workerSpawnLogic(room)) continue
-    upgraderSpawnLogic(room)
+    for (const spawnCreep of spawnPriority) {
+      if (spawnCreep(room)) break
+    }
   }
 }
