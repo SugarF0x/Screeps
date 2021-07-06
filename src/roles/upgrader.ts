@@ -17,7 +17,7 @@ const upgrade = (creep: Creep) => {
   const controller = creep.room.controller
   if (!controller) throw new Error(`No controller found in room ${creep.room.name}`)
 
-  if(creep.upgradeController(controller) == ERR_NOT_IN_RANGE) creep.moveTo(controller)
+  if (creep.upgradeController(controller) === ERR_NOT_IN_RANGE) creep.moveTo(controller)
 }
 
 const shouldSleep = (creep: Creep) => {
