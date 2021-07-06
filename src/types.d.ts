@@ -8,6 +8,12 @@ declare global {
     working: boolean;
   }
 
+  interface SpawnMemory {
+    constructions: Partial<{
+      proxy: boolean
+    }>
+  }
+
   interface Memory {
     uuid: number;
     log: any;
