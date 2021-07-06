@@ -6,16 +6,16 @@ export const spawnTemplate = ({
   prompt,
   role,
   room
-}: SpawnTemplateOptions) => {
+}: SpawnTemplateOptions): boolean => {
   if (!prompt) prompt = `🛠️ Spawning ${role}`
 
   const spawn = room.find(FIND_MY_SPAWNS)[0]
-  if (!spawn) return
-  if (isSpawning(spawn, { role, prompt })) return
-  if (spawn.spawnCreep(body, 'dry', { dryRun: true }) !== OK) return
+  if (!spawn) return false
+  if (isSpawning(spawn, { role, prompt })) return false
+  if (spawn.spawnCreep(body, 'dry', { dryRun: true }) !== OK) return false
 
   const creeps = room.find(FIND_CREEPS, { filter: { memory: { role: role } } })
-  if (creeps.length >= amount) return
+  if (creeps.length >= amount) return false
 
   const newCreepName = getAvailableName(creeps, capitalize(role))
   const memoryOptions = { memory: { role: role, room: room.name, working: false } }

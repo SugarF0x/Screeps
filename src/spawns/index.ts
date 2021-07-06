@@ -5,7 +5,7 @@ export * from './builder'
 
 import { workerSpawnLogic, upgraderSpawnLogic, builderSpawnLogic } from '.'
 
-const spawnPriority = [
+const spawnPriority: Array<(room: Room) => boolean> = [
   workerSpawnLogic,
   upgraderSpawnLogic,
   builderSpawnLogic
