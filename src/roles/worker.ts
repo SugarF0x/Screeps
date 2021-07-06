@@ -1,4 +1,4 @@
-import { findSpawn } from "utils"
+import { findProxy, findSpawn } from "utils"
 
 export const workerLogic = (creep: Creep) => {
   if (shouldSleep(creep)) return
@@ -8,10 +8,9 @@ export const workerLogic = (creep: Creep) => {
 }
 
 const harvest = (creep: Creep) => {
-  const nearestSource = creep.room.find(FIND_SOURCES)[0]
-  if (!nearestSource) throw new Error(`No source found in room ${creep.room.name}`)
+  const proxy = findProxy(creep.room)
 
-  if (creep.harvest(nearestSource) === ERR_NOT_IN_RANGE) creep.moveTo(nearestSource)
+  if (creep.harvest(proxy) === ERR_NOT_IN_RANGE) creep.moveTo(proxy)
 }
 
 const deposit = (creep: Creep) => {
