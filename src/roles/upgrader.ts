@@ -1,3 +1,5 @@
+import { findSpawn } from "../utils"
+
 export const upgraderLogic = (creep: Creep) => {
   if (shouldSleep(creep)) return
 
@@ -6,8 +8,7 @@ export const upgraderLogic = (creep: Creep) => {
 }
 
 const resupply = (creep: Creep) => {
-  const spawn = creep.room.find(FIND_MY_SPAWNS)[0]
-  if (!spawn) throw new Error(`No spawn found in room ${creep.room.name}`)
+  const spawn = findSpawn(creep.room)
 
   if (creep.withdraw(spawn, RESOURCE_ENERGY, creep.store.getFreeCapacity()) === ERR_NOT_IN_RANGE) creep.moveTo(spawn)
 }
