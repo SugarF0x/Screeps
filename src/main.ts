@@ -5,8 +5,13 @@ import { logic } from "roles"
 import { governor } from "governor"
 
 export const loop = ErrorMapper.wrapLoop(() => {
-  governor()
-  spawn()
-  logic()
-  dumpCreepMemory()
+  for (const roomName in Game.rooms) {
+    const room = Game.rooms[roomName]
+
+    governor(room)
+    spawn(room)
+    logic(room)
+
+    dumpCreepMemory()
+  }
 });

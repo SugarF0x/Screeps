@@ -11,12 +11,7 @@ const spawnPriority: Array<(room: Room) => boolean> = [
   builderSpawnLogic
 ]
 
-export const spawn = () => {
-  for (const roomName in Game.rooms) {
-    const room = Game.rooms[roomName]
-
-    for (const spawnCreep of spawnPriority) {
-      if (spawnCreep(room)) break
-    }
-  }
+export const spawn = (room: Room) => {
+  for (const spawnCreep of spawnPriority)
+    if (spawnCreep(room)) break
 }
