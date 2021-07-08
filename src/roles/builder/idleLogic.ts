@@ -1,14 +1,13 @@
 import { findSpawn, getPointsInRadius } from "utils"
 import { resupply } from "./resupplyLogic"
 
-export const idleLogic = (creep: Creep): boolean => {
+export const idleLogic = (creep: Creep) => {
   const idlePosition = getIdlePosition(creep)
 
   if (creep.store.getFreeCapacity() > 0) resupply(creep)
   else if (!creep.pos.isEqualTo(idlePosition)) creep.moveTo(idlePosition.x, idlePosition.y)
-  else return false
 
-  return true
+  return false
 }
 
 export const clearIdlePosition = (creep: Creep) => {
